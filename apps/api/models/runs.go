@@ -19,8 +19,8 @@ type Distance struct {
 }
 
 type Derived struct {
-	PaceSecondsPerKm   float64 `json:"pace_seconds_per_km"`
-	PaceSecondsPerMile float64 `json:"pace_seconds_per_mile"`
+	PaceMinutesPerKm   float64 `json:"pace_minutes_per_km"`
+	PaceMinutesPerMile float64 `json:"pace_minutes_per_mile"`
 }
 
 type Run struct {
@@ -33,8 +33,8 @@ type Run struct {
 type RunResponse struct {
 	ID         string    `json:"id"`
 	OccurredAt time.Time `json:"occurred_at"`
-	Distance   Distance  `json:"distance_m"`
-	Duration   Distance  `json:"duration_s"`
+	Distance   float64   `json:"distance_m"`
+	Duration   float64   `json:"duration_s"`
 	Calories   float64   `json:"calories_kcal"`
 	Derived    Derived   `json:"derived"`
 }

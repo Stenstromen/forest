@@ -1,7 +1,6 @@
 package main
 
 import (
-	//"encoding/json"
 	"log"
 	"net/http"
 	"time"
@@ -21,16 +20,6 @@ func main() {
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte(`{"status":"ok"}`))
 	})
-
-	/* 	v1.HandleFunc("POST /runs", func(w http.ResponseWriter, r *http.Request) {
-		var run models.Run
-		err := json.NewDecoder(r.Body).Decode(&run)
-		if err != nil {
-			w.WriteHeader(http.StatusBadRequest)
-			w.Write([]byte(`{"error":"invalid request"}`))
-			return
-		}
-	}) */
 
 	v1.HandleFunc("POST /runs", controllers.CreateRun)
 
