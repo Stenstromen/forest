@@ -1,0 +1,30 @@
+version: "3"
+
+vars:
+  BINARY_NAME: forest-api
+  CMD_PATH: ./apps/api/cmd/server
+  MYSQL_DSN: root:root@tcp(localhost:3306)/forest
+
+tasks:
+  build:
+    desc: Build the API server binary
+    dir: apps/api
+    cmds:
+      - go build -o ../../{{.BINARY_NAME}} ./cmd/server
+
+  run:
+    desc: Build and start the API server
+    deps: [build]
+    cmds:
+      - ./{{.BINARY_NAME}}
+
+  dev:
+    desc: Run the API server without building a binary
+    dir: apps/api
+    cmds:
+      - MYSQL_DSN={{.MYSQL_DSN}} go run ./cmd/server
+
+  clean:
+    desc: Remove built binary
+    cmds:
+      - rm -f {{.BINARY_NAME}}
